@@ -1,0 +1,49 @@
+version: "3"
+services:
+  php:
+    build:
+      context: ./docker/php
+    networks:
+      - bnb-bank
+    volumes:
+      - .:/var/www
+    depends_on:
+      - mysql
+      - redis
+
+  nginx:
+    build: ./docker/nginx
+    networks:
+      - bnb-bank
+    ports:
+      - "8001:80"
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - php
+  
+  mysql:
+    image: mysql:8
+    networks:
+      - bnb-bank
+    ports:
+      - "3206:3306"
+    volumes:
+      - ./docker/mysql/dbdata:/var/lib/mysql
+      - ./docker:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_DATABASE: bnb-bank
+      MYSQL_ROOT_PASSWORD: root
+  
+  redis:
+    image: redis:alpine
+    networks:
+      - bnb-bank
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./docker/redis/dbdata:/data
+
+networks:
+  bnb-bank:
+    driver: bridge
