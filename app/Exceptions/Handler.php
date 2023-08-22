@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Turno\Common\Exceptions\DomainException;
 
 class Handler extends ExceptionHandler
 {
@@ -19,6 +20,15 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * A list of the exception types that are not reported.
+     *
+     * @var array<int, class-string<\Throwable>>
+     */
+    protected $dontReport = [
+        DomainException::class,
+    ];
+
+    /**
      * Register the exception handling callbacks for the application.
      */
     public function register(): void
@@ -26,5 +36,16 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof DomainException) {
+            $status_code = $exception->getCode() > 0 ? $exception->getCode() : 422;
+
+            return response()->json(['success' => false, 'message' => $exception->getMessage()], $status_code);
+        }
+
+        return parent::render($request, $exception);
     }
 }

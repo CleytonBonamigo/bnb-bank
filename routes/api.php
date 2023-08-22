@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('customer/balance', [\Turno\Customer\Controllers\CustomerController::class, 'balance']);
+
+    Route::get('transactions', [\Turno\Transaction\Controllers\TransactionController::class, 'index']);
+    Route::get('transactions', [\Turno\Transaction\Controllers\TransactionController::class, 'index']);
+    Route::get('transactions/{transaction_id}', [\Turno\Transaction\Controllers\TransactionController::class, 'show']);
+    Route::get('transactions/{transaction_id}/image', [\Turno\Transaction\Controllers\TransactionController::class, 'image']);
+
+    Route::post('deposit/{transaction_id}/approve', [\Turno\DepositManagement\Controllers\DepositManagementController::class, 'approve']);
+    Route::post('deposit/{transaction_id}/reject', [\Turno\DepositManagement\Controllers\DepositManagementController::class, 'reject']);
+
+    Route::post('deposit', [\Turno\Deposit\Controllers\DepositController::class, 'store']);
+    Route::post('purchases', [\Turno\Purchase\Controllers\PurchaseController::class, 'store']);
 });

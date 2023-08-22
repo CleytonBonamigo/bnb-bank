@@ -4,6 +4,9 @@ RUN apk add --no-cache openssl bash git mysql-client libzip-dev libpng-dev jpeg-
 RUN docker-php-ext-configure gd --with-jpeg
 RUN docker-php-ext-install pdo pdo_mysql bcmath gd
 
+# Install Node.js and npm
+RUN apk add --update nodejs npm
+
 RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \

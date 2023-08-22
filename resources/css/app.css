@@ -1,0 +1,318 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.content {
+    @apply min-h-screen;
+}
+
+.button-menu, .button-filter {
+    @apply hover:opacity-70;
+}
+
+.sidebar {
+    @apply absolute min-h-screen bg-blue-400 z-30 text-white;
+    width: 220px;
+    left: -220px;
+    transition: left .5s;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-overlay {
+    @apply absolute top-0 right-0 bottom-0 left-0 bg-black bg-opacity-60 z-20 min-h-screen;
+}
+
+.sidebar-header {
+    @apply w-full bg-blue-200 text-3xl  p-8 font-light text-center;
+}
+
+.sidebar-item {
+    @apply flex w-full uppercase text-xs py-4 px-5 items-center hover:opacity-80 focus:opacity-80;
+}
+
+.sidebar:hover .sidebar-item.disabled {
+    @apply opacity-30 text-gray-500;
+}
+
+.sidebar-item.disabled {
+    @apply hover:cursor-not-allowed hover:opacity-50 focus:opacity-50;
+}
+
+.sidebar-item-icon {
+    @apply mr-4;
+    min-width: 25px;
+    opacity: 0.5;
+}
+
+.header {
+    @apply w-full bg-blue-200 text-xl text-white p-5 font-light text-center;
+}
+
+.header-login {
+    @apply w-full bg-blue-400 text-3xl text-white pt-20 pb-8 font-light text-center;
+}
+
+.header-info {
+    @apply flex justify-between mt-8 items-end;
+}
+
+.header-info > div {
+    @apply flex flex-col items-start;
+}
+
+.header-info-title, .income-title {
+    @apply text-xs font-semibold;
+}
+
+.header-info-value {
+    @apply text-2xl;
+}
+
+.header-info > div.header-month {
+    @apply flex flex-row text-base items-center space-x-2;
+}
+
+.header.header-light {
+    @apply bg-slate-100 text-blue-400;
+}
+
+.header-light .header-title {
+    @apply text-sm font-semibold uppercase;
+}
+
+.header-light .header-info-title {
+    @apply text-xs font-semibold uppercase text-blue-200;
+}
+
+.header-light .header-info-value {
+    @apply text-xl;
+}
+
+.income {
+    @apply bg-sky-100 flex justify-between p-3 items-end text-blue-400;
+}
+
+.expenses {
+    @apply bg-slate-100;
+}
+
+.income > div {
+    @apply flex flex-col items-start p-2;
+}
+
+.income-value {
+    @apply text-xl font-light;
+}
+
+.income-button {
+    @apply flex flex-col text-xs items-center space-y-1 uppercase p-2 hover:text-blue-500 focus:text-blue-500;
+    min-width: 130px;
+}
+
+.input-rounded {
+    @apply w-full border rounded-full border-blue-400 border-opacity-80 py-3 px-5 placeholder:text-blue-400 placeholder:opacity-50;
+}
+
+.button {
+    @apply w-full flex items-center justify-center bg-blue-400 hover:bg-blue-500 focus:bg-blue-500 text-white text-xs font-semibold py-4 border border-transparent rounded;
+    transition: background-color .2s;
+}
+
+.button-inverter {
+    @apply bg-transparent border border-blue-400 text-blue-400 hover:bg-blue-100 focus:bg-blue-100;
+    transition: background-color .2s;
+}
+
+.button-float {
+    @apply absolute flex items-center justify-center bg-blue-400 text-white rounded-full right-0 bottom-0 mr-5 mb-5 z-10 hover:bg-blue-500 focus:bg-blue-500;
+    width: 70px;
+    height: 70px;
+    transition: background-color .2s;
+}
+
+.button-action {
+    @apply text-blue-400 hover:text-blue-500 focus:text-blue-500;
+}
+
+.link-login {
+    @apply flex justify-center mt-6 text-blue-400 hover:underline;
+}
+
+.negative-value {
+    @apply text-red-500;
+}
+
+.transactions {
+    @apply p-5 text-blue-400;
+}
+
+.transactions h2 {
+    @apply uppercase mb-4;
+}
+
+.transactions ul {
+    overflow: auto;
+    max-height: 400px;
+    padding-bottom: 100px;
+}
+
+.transactions li {
+    @apply flex flex-row justify-between items-center py-3 border-b border-blue-400 border-opacity-30 text-xs;
+}
+
+.transactions h3 {
+    @apply font-bold;
+}
+
+.transactions .value {
+    @apply text-sm;
+}
+
+.input-group-icon {
+    @apply flex text-blue-400 items-center my-10;
+}
+
+.input-group-icon label {
+    @apply flex-1;
+}
+
+.input-group-icon label > div {
+    @apply flex items-center text-xs font-light uppercase opacity-50;
+}
+
+.input-group-icon label > div > svg {
+    @apply mr-2;
+    min-width: 24px;
+}
+
+.input-group-icon input {
+    @apply w-full pl-8 py-0.5 text-lg border-b-2 border-blue-400 border-opacity-20 focus:outline-0 focus:border-opacity-100;
+    transition: border-bottom-color .2s;
+}
+
+.input-group-icon label:hover input {
+    @apply border-opacity-60 focus:border-opacity-100;
+}
+
+.info-list .input-group-icon label > div {
+    @apply opacity-100;
+}
+
+.info-list label div:not(.value) {
+    @apply text-xs  opacity-50;
+}
+
+.info-list .value {
+    @apply w-full pl-8 text-sm text-blue-400 font-semibold;
+}
+
+.input-group-icon small {
+    @apply w-full text-xs opacity-50 ;
+}
+
+.input-group-append {
+    @apply w-2/12 pl-5 text-lg;
+}
+
+.input-group-append {
+    @apply w-2/12 pl-5 text-lg;
+}
+
+.header-status {
+    @apply w-full flex justify-between text-base -mb-5 mt-4 ;
+}
+
+.header-status li {
+    @apply py-3 px-2 border-b-2 border-transparent hover:cursor-pointer focus:cursor-pointer;
+}
+
+.header-status li.active {
+    @apply border-blue-400;
+}
+
+.card-upload {
+    @apply relative flex flex-col items-center justify-center space-y-5 w-full h-40
+    border-2 border-dashed border-blue-400
+    text-xs font-bold text-blue-400 opacity-50 uppercase
+    hover:opacity-80 hover:bg-blue-100 hover:bg-opacity-50
+    focus:opacity-80 focus:bg-blue-100 focus:bg-opacity-50
+    hover:cursor-pointer focus:cursor-pointer;
+}
+
+.card-upload .file {
+    @apply absolute w-full h-40 top-0 left-0 bottom-0 right-0 opacity-0 hover:cursor-pointer focus:cursor-pointer;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.upload-preview {
+    max-width: 100%;
+}
+
+.button-link {
+    @apply flex items-center py-2 text-xs text-blue-400 opacity-50 uppercase space-x-2 hover:underline  mb-10;
+}
+
+.info-list {
+
+}
+
+.input-group-icon.has-action label:hover {
+    @apply hover:cursor-pointer text-blue-300;
+}
+
+.input-group-icon.has-action:hover .button-action {
+    @apply text-blue-500 text-blue-500;
+}
+
+.footer {
+    @apply absolute bottom-0 space-x-2 p-5 w-full flex;
+}
+
+label.has-errors :not(input) {
+    @apply text-red-500;
+}
+
+.has-errors input {
+    @apply border-red-500;
+}
+
+.has-errors p {
+    @apply text-red-500 text-xs;
+}
+
+.has-errors .card-upload {
+    @apply border-red-500 text-red-400 hover:bg-red-100 hover:bg-opacity-50 focus:bg-red-100;
+}
+
+button.button-disabled, .button.button-inverter.button-disabled {
+    @apply text-white border-transparent bg-gray-300 hover:bg-gray-300 focus:bg-gray-300 hover:cursor-not-allowed;
+}
+
+.icon-loading {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.transactions li.loading {
+    @apply flex justify-start;
+}
+
+.message-success {
+    @apply w-full mt-5 p-4 bg-green-200 border border-green-400 text-green-600 rounded;
+}
+
+.message-error {
+    @apply w-full mt-5 p-4 bg-red-200 border border-red-400 text-red-600 rounded;
+}

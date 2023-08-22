@@ -4,6 +4,10 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Turno\Models\Transaction;
+use Turno\Models\User;
+use Turno\Transaction\Policies\TransactionPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        Transaction::class => TransactionPolicy::class,
     ];
 
     /**
@@ -21,6 +25,26 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+
+        Gate::define('can-purchase', function (User $user) {
+            return !$user->is_admin;
+        });
+
+        Gate::define('can-deposit', function (User $user) {
+            return !$user->is_admin;
+        });
+
+        Gate::define('can-approve-deposit', function (User $user) {
+            return $user->is_admin;
+        });
+
+        Gate::define('can-reject-deposit', function (User $user) {
+            return $user->is_admin;
+        });
+
+        Gate::define('can-view-own-balance', function (User $user) {
+            return !$user->is_admin;
+        });
     }
 }

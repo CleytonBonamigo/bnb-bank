@@ -30,7 +30,7 @@ services:
       - "3206:3306"
     volumes:
       - ./docker/mysql/dbdata:/var/lib/mysql
-      - ./docker:/docker-entrypoint-initdb.d
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
     environment:
       MYSQL_DATABASE: bnb-bank
       MYSQL_ROOT_PASSWORD: root
@@ -47,3 +47,6 @@ services:
 networks:
   bnb-bank:
     driver: bridge
+
+volumes:
+  node_modules:
