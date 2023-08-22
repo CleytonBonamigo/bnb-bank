@@ -14,8 +14,8 @@ class TransactionStatusSeeder extends Seeder {
      */
     public function run()
     {
-        TransactionStatus::insertOrIgnore(['id' => 1, 'description' => 'Pending']);
-        TransactionStatus::insertOrIgnore(['id' => 2, 'description' => 'Approved']);
-        TransactionStatus::insertOrIgnore(['id' => 3, 'description' => 'Rejected']);
+        TransactionStatus::insertOrIgnore(['id' => 1, 'description' => 'Pending', 'created_at' => now(), 'updated_at' => now()]);
+        TransactionStatus::insertOrIgnore(['id' => 2, 'description' => 'Approved', 'created_at' => now(), 'updated_at' => now()]);
+        TransactionStatus::insertOrIgnore(['id' => 3, 'description' => 'Rejected', 'created_at' => now(), 'updated_at' => now()]);
     }
 }

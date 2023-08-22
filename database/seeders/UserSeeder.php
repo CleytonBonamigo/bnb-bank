@@ -21,7 +21,9 @@ class UserSeeder extends Seeder {
             'username' => 'admin',
             'password' => Hash::make('admin'),
             'balance'  => 0,
-            'is_admin' => true
+            'is_admin' => true,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         \Turno\Models\User::factory(2)->create();

@@ -14,7 +14,7 @@ class TransactionTypeSeeder extends Seeder {
      */
     public function run()
     {
-        TransactionType::insertOrIgnore(['id' => 1, 'description' => 'Deposit']);
-        TransactionType::insertOrIgnore(['id' => 2, 'description' => 'Purchase']);
+        TransactionType::insertOrIgnore(['id' => 1, 'description' => 'Deposit', 'created_at' => now(), 'updated_at' => now()]);
+        TransactionType::insertOrIgnore(['id' => 2, 'description' => 'Purchase', 'created_at' => now(), 'updated_at' => now()]);
     }
 }

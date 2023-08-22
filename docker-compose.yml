@@ -1,6 +1,7 @@
 version: "3"
 services:
   php:
+    container_name: bnb-bank-php
     build:
       context: ./docker/php
     networks:
@@ -12,6 +13,7 @@ services:
       - redis
 
   nginx:
+    container_name: bnb-bank-nginx
     build: ./docker/nginx
     networks:
       - bnb-bank
@@ -23,6 +25,7 @@ services:
       - php
   
   mysql:
+    container_name: bnb-bank-mysql
     image: mysql:8
     networks:
       - bnb-bank
@@ -36,6 +39,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
   
   redis:
+    container_name: bnb-bank-redis
     image: redis:alpine
     networks:
       - bnb-bank
